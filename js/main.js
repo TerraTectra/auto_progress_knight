@@ -74,6 +74,7 @@ const baseLifespan = 365 * 70
 const baseGameSpeed = 100
 const baseEvilGainMultiplier = 10
 const baseEssenceGainMultiplier = 20
+const baseDarkMagicXpMultiplier = 30
 const heroIncomeMult = 2500000000000000000
 
 
@@ -742,12 +743,15 @@ function getEvil() {
 }
 
 function getEvilXpGain() {
+    var evilXpGain = 0
     if (gameData.active_challenge == "dance_with_the_devil") {
         const evilEffect = (Math.pow(getEvil(), 0.35) / 1e3) - 1
-        return evilEffect < 0 ? 0 : evilEffect
+        evilXpGain = evilEffect < 0 ? 0 : evilEffect
+    } else {
+        evilXpGain = getEvil()
     }
 
-    return getEvil()
+    return evilXpGain * baseDarkMagicXpMultiplier
 }
 
 function getEssence() {
