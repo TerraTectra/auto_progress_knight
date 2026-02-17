@@ -72,6 +72,8 @@ var autoBuyEnabled = true
 const updateSpeed = 20
 const baseLifespan = 365 * 70
 const baseGameSpeed = 100
+const baseEvilGainMultiplier = 10
+const baseEssenceGainMultiplier = 20
 const heroIncomeMult = 2500000000000000000
 
 
@@ -784,6 +786,7 @@ function getEvilGain() {
     const inferno = gameData.requirements["Inferno"].isCompleted() ? 12 : 1
     return evilControl.getEffect() * bloodMeditation.getEffect() * absoluteWish.getEffect() 
         * oblivionEmbodiment.getEffect() * yingYang.getEffect() * inferno * getChallengeBonus("legends_never_die")
+        * baseEvilGainMultiplier
 }
 
 function getEssenceGain() {
@@ -795,6 +798,7 @@ function getEssenceGain() {
 
     return essenceControl.getEffect() * essenceCollector.getEffect() * transcendentMaster.getEffect()
         * faintHope.getEffect() * rise.getEffect() * getChallengeBonus("dance_with_the_devil")
+        * baseEssenceGainMultiplier
 }
 
 function getCompletedGameSpeedBoost() {
